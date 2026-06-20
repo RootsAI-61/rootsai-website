@@ -541,6 +541,7 @@ body {
   letter-spacing: -0.02em;
   margin-bottom: 24px;
   animation: fadeInUp 0.8s ease 0.15s both;
+  max-width: 100%;
 }
 
 .hero-title .line-gradient {
@@ -548,13 +549,19 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  display: inline-block;
+  max-width: 100%;
 }
 
 .hero-title .typewriter {
   display: inline-block;
+  max-width: 100%;
   border-right: 2px solid var(--cyan);
   padding-right: 4px;
   animation: blink 0.7s step-end infinite;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 @keyframes blink {
@@ -1719,7 +1726,7 @@ body {
   .nav-links, .nav-cta { display: none; }
   .hamburger { display: flex; }
 
-  .hero-title { font-size: 2.4rem; }
+  .hero-title { font-size: 2.2rem; }
   .leadership-grid { grid-template-columns: 1fr; gap: 16px; }
   .leadership-grid-secondary { grid-template-columns: 1fr; gap: 16px; }
   .vision-grid { grid-template-columns: 1fr; gap: 16px; }
@@ -1742,6 +1749,8 @@ body {
   .values-grid { grid-template-columns: 1fr; }
   .hero-actions { flex-direction: column; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 0.95rem; }
 }
 
 /* ---------- KEYFRAMES ---------- */

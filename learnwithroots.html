@@ -279,6 +279,37 @@
       transition: opacity 0.2s, transform 0.2s;
     }
     .btn-lwr:hover { opacity: 0.9; transform: translateY(-2px); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .lwr-hero { padding: 110px 20px 48px; min-height: auto; }
+      .lwr-hero p { font-size: 1rem; }
+      .lwr-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-bottom: 56px;
+      }
+      .lwr-stat { padding: 18px 12px; }
+      .lwr-stat-num { font-size: 1.5rem; }
+      .courses-section { padding: 0 20px 70px; }
+      .courses-grid { grid-template-columns: 1fr; gap: 20px; }
+      .course-banner { height: 110px; font-size: 2.4rem; }
+      .course-body { padding: 20px 20px 18px; }
+      .course-meta { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .course-pricing { text-align: left; }
+      .enroll-section { padding: 40px 24px; margin: 0 20px 60px; }
+      .enroll-section h2 { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .lwr-hero { padding: 100px 16px 40px; }
+      .lwr-hero-badges { gap: 8px; }
+      .lwr-badge { font-size: 0.74rem; padding: 5px 11px; }
+      .lwr-stats { grid-template-columns: 1fr 1fr; padding: 0 16px; }
+      .course-banner { height: 90px; font-size: 2rem; }
+      .enroll-section { padding: 32px 18px; }
+      .btn-lwr { width: 100%; justify-content: center; padding: 14px 24px; }
+    }
   </style>
 </head>
 <body>
