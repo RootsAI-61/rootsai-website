@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services — RootsAI</title>
+  <meta name="description" content="Explore RootsAI's full suite of AI and technology services — from Machine Learning to AI Agents and Automation." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="rootsai-logo.png" />
+  <style>
+    /* Services-specific extras */
+    .service-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      color: var(--cyan);
+      font-weight: 500;
+      margin-top: 12px;
+    }
+
+    .services-filter {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 52px;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: rgba(123,47,255,0.12);
+      border-color: var(--violet);
+      color: var(--violet-light);
+    }
+
+    .service-card-enhanced {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      transition: var(--transition);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .service-card-enhanced::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gradient-hero);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .service-card-enhanced:hover {
+      border-color: rgba(123,47,255,0.5);
+      background: var(--bg-card-hover);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(123,47,255,0.12);
+    }
+
+    .service-card-enhanced:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-number {
+      position: absolute;
+      top: 16px; right: 16px;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .service-learn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--violet-light);
+      margin-top: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+      width: fit-content;
+    }
+
+    .service-learn:hover { gap: 10px; color: var(--cyan); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .process-step {
+      text-align: center;
+      padding: 32px 20px;
+      position: relative;
+    }
+
+    .process-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--violet);
+      font-size: 1.2rem;
+    }
+
+    .process-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--gradient-hero);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      margin: 0 auto 20px;
+    }
+
+    .process-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .process-text {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .process-grid { grid-template-columns: 1fr 1fr; }
+      .process-step::after { display: none; }
+    }
+    @media (max-width: 480px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="page-transition"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+      <span class="nav-logo-text">RootsAI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="subgroups.html">Sub Groups</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="subgroups.html">Sub Groups</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="container" style="position:relative;z-index:2;">
+      <span class="section-eyebrow">What We Build</span>
+      <h1 class="section-title" style="font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:20px;">
+        AI Services That<br /><span>Drive Real Results</span>
+      </h1>
+      <p style="color:var(--text-secondary);font-size:1.1rem;max-width:560px;margin:0 auto;">
+        From rapid prototyping to enterprise-grade deployment, RootsAI covers every layer of the modern AI stack.
+      </p>
+    </div>
+  </div>
+
+  <!-- SERVICES SECTION -->
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+
+      <!-- Filters -->
+      <div class="services-filter reveal">
+        <button class="filter-btn active" onclick="filterServices('all', this)">All Services</button>
+        <button class="filter-btn" onclick="filterServices('ai', this)">Core AI</button>
+        <button class="filter-btn" onclick="filterServices('dev', this)">Development</button>
+        <button class="filter-btn" onclick="filterServices('auto', this)">Automation</button>
+      </div>
+
+      <!-- 12 Service Cards Grid -->
+      <div class="services-grid" id="services-grid">
+
+        <!-- 1. AI Solutions -->
+        <div class="service-card-enhanced reveal reveal-delay-1" data-category="ai">
+          <span class="service-number">01</span>
+          <div class="service-icon">🧠</div>
+          <h3 class="service-title">AI Solutions</h3>
+          <p class="service-desc">End-to-end AI consulting and implementation. We architect custom intelligence layers for your existing systems and workflows.</p>
+          <span class="service-tag">Enterprise</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 2. Web Development -->
+        <div class="service-card-enhanced reveal reveal-delay-2" data-category="dev">
+          <span class="service-number">02</span>
+          <div class="service-icon">🌐</div>
+          <h3 class="service-title">Web Development</h3>
+          <p class="service-desc">AI-first web applications built for performance. React, Next.js, and full-stack solutions infused with intelligent UX.</p>
+          <span class="service-tag">Full Stack</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 3. Data Science -->
+        <div class="service-card-enhanced reveal reveal-delay-3" data-category="ai">
+          <span class="service-number">03</span>
+          <div class="service-icon">📊</div>
+          <h3 class="service-title">Data Science</h3>
+          <p class="service-desc">Transform raw data into strategic intelligence. We build pipelines, dashboards, and predictive models that move the needle.</p>
+          <span class="service-tag">Analytics</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 4. UI/UX Design -->
+        <div class="service-card-enhanced reveal reveal-delay-1" data-category="dev">
+          <span class="service-number">04</span>
+          <div class="service-icon">🎨</div>
+          <h3 class="service-title">UI/UX Design</h3>
+          <p class="service-desc">Human-centered design meets AI. We craft interfaces that feel intuitive, look premium, and convert with precision.</p>
+          <span class="service-tag">Design Systems</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 5. Machine Learning -->
+        <div class="service-card-enhanced reveal reveal-delay-2" data-category="ai">
+          <span class="service-number">05</span>
+          <div class="service-icon">⚙️</div>
+          <h3 class="service-title">Machine Learning</h3>
+          <p class="service-desc">Custom ML models trained on your data. Classification, regression, clustering, recommendation engines — engineered to excel.</p>
+          <span class="service-tag">Model Training</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 6. Deep Learning -->
+        <div class="service-card-enhanced reveal reveal-delay-3" data-category="ai">
+          <span class="service-number">06</span>
+          <div class="service-icon">🔬</div>
+          <h3 class="service-title">Deep Learning</h3>
+          <p class="service-desc">Neural network architectures — CNNs, transformers, GANs — designed and trained for complex pattern recognition tasks.</p>
+          <span class="service-tag">Neural Nets</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 7. Computer Vision -->
+        <div class="service-card-enhanced reveal reveal-delay-1" data-category="ai">
+          <span class="service-number">07</span>
+          <div class="service-icon">👁️</div>
+          <h3 class="service-title">Computer Vision</h3>
+          <p class="service-desc">Teach machines to see. Object detection, facial recognition, OCR, video analytics, and real-time visual processing at scale.</p>
+          <span class="service-tag">Vision AI</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 8. AI Agents -->
+        <div class="service-card-enhanced reveal reveal-delay-2" data-category="ai">
+          <span class="service-number">08</span>
+          <div class="service-icon">🤖</div>
+          <h3 class="service-title">AI Agents</h3>
+          <p class="service-desc">Autonomous LLM-powered agents that plan, reason, and act. Multi-agent orchestration for complex workflow automation.</p>
+          <span class="service-tag">Agentic AI</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 9. AI Automation -->
+        <div class="service-card-enhanced reveal reveal-delay-3" data-category="auto">
+          <span class="service-number">09</span>
+          <div class="service-icon">⚡</div>
+          <h3 class="service-title">AI Automation</h3>
+          <p class="service-desc">Replace repetitive processes with intelligent automation. From data entry to decision trees — we automate what slows you down.</p>
+          <span class="service-tag">Process AI</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 10. AI Chatbot Development -->
+        <div class="service-card-enhanced reveal reveal-delay-1" data-category="ai">
+          <span class="service-number">10</span>
+          <div class="service-icon">💬</div>
+          <h3 class="service-title">AI Chatbot Development</h3>
+          <p class="service-desc">Conversational AI that actually understands context. RAG-powered chatbots for customer support, sales, and internal tools.</p>
+          <span class="service-tag">Conversational AI</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 11. N8N Automation -->
+        <div class="service-card-enhanced reveal reveal-delay-2" data-category="auto">
+          <span class="service-number">11</span>
+          <div class="service-icon">🔗</div>
+          <h3 class="service-title">N8N Automation</h3>
+          <p class="service-desc">Advanced workflow automation with n8n. Connect 400+ apps, trigger AI actions, and build zero-code automation pipelines.</p>
+          <span class="service-tag">No-Code</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+        <!-- 12. Twilio Integration -->
+        <div class="service-card-enhanced reveal reveal-delay-3" data-category="auto">
+          <span class="service-number">12</span>
+          <div class="service-icon">📱</div>
+          <h3 class="service-title">Twilio Integration</h3>
+          <p class="service-desc">AI-powered voice, SMS, and WhatsApp experiences via Twilio. Intelligent communication flows for customer engagement at scale.</p>
+          <span class="service-tag">Comms API</span>
+          <span class="service-learn">Learn more →</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- PROCESS SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">How We Work</span>
+        <h2 class="section-title">Our <span>Delivery Process</span></h2>
+        <p class="section-subtitle">A lean, iterative process built for speed without sacrificing quality.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step reveal reveal-delay-1">
+          <div class="process-num">1</div>
+          <h3 class="process-title">Discovery</h3>
+          <p class="process-text">Deep-dive into your goals, data landscape, and constraints to define the right AI strategy.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-2">
+          <div class="process-num">2</div>
+          <h3 class="process-title">Architecture</h3>
+          <p class="process-text">Design the optimal system — models, APIs, infrastructure — with a clear technical blueprint.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-3">
+          <div class="process-num">3</div>
+          <h3 class="process-title">Build & Train</h3>
+          <p class="process-text">Rapid development sprints with continuous testing, model iteration, and stakeholder reviews.</p>
+        </div>
+        <div class="process-step reveal reveal-delay-4">
+          <div class="process-num">4</div>
+          <h3 class="process-title">Deploy & Scale</h3>
+          <p class="process-text">Production launch with monitoring, alerting, and ongoing optimization to keep performance peak.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div style="background:var(--gradient-card);border:1px solid var(--border-glow);border-radius:var(--radius-xl);padding:56px;text-align:center;" class="reveal">
+        <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:12px;">
+          Not Sure Which Service You Need?
+        </h2>
+        <p style="color:var(--text-secondary);margin-bottom:32px;">Book a free 30-min consultation. We'll map out exactly what your business needs.</p>
+        <a href="contact.html" class="btn-primary">Get a Free Consultation →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" /><span class="nav-logo-text">RootsAI</span></a>
+        <p>Building the next layer of human–machine collaboration through precision AI engineering and product development.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="products.html">Products</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">AI Solutions</a></li><li><a href="services.html">ML & Deep Learning</a></li><li><a href="services.html">AI Agents</a></li><li><a href="services.html">Automation</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">GitHub</a></li><li><a href="#">Blog</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RootsAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">⌥</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/script.js"></script>
+<script>
+  function filterServices(category, btn) {
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Filter cards
+    const cards = document.querySelectorAll('#services-grid .service-card-enhanced');
+    cards.forEach(card => {
+      const cat = card.dataset.category;
+      const show = category === 'all' || cat === category;
+      card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      if (show) {
+        card.style.opacity = '1';
+        card.style.transform = '';
+        card.style.display = 'flex';
+      } else {
+        card.style.opacity = '0.2';
+        card.style.transform = 'scale(0.95)';
+      }
+    });
+  }
+</script>
+</body>
+</html>

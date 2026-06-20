@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RootsAI — Sub Groups</title>
+  <meta name="description" content="Explore RootsAI's sub groups — RootsAI core and Learn With Roots education platform." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="rootsai-logo.png" />
+  <style>
+    .subgroups-hero {
+      min-height: 38vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 60px;
+      position: relative;
+    }
+    .subgroups-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .subgroups-hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .subgroups-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+    .subgroup-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 48px 40px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      text-decoration: none;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    .subgroup-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gradient-text);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .subgroup-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(123,47,255,0.2);
+      border-color: rgba(123,47,255,0.4);
+    }
+    .subgroup-card:hover::before {
+      opacity: 1;
+    }
+    .subgroup-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 24px;
+    }
+    .icon-rootsai {
+      background: linear-gradient(135deg, rgba(123,47,255,0.2), rgba(0,212,255,0.15));
+      border: 1px solid rgba(123,47,255,0.3);
+    }
+    .icon-learn {
+      background: linear-gradient(135deg, rgba(0,212,255,0.2), rgba(123,47,255,0.15));
+      border: 1px solid rgba(0,212,255,0.3);
+    }
+    .subgroup-badge {
+      display: inline-block;
+      background: rgba(123,47,255,0.15);
+      color: #a78bfa;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+    .subgroup-badge.learn {
+      background: rgba(0,212,255,0.12);
+      color: #00D4FF;
+    }
+    .subgroup-card h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .subgroup-card p {
+      color: var(--text-secondary);
+      font-size: 0.97rem;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .subgroup-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--accent-purple);
+      transition: gap 0.2s ease;
+    }
+    .subgroup-card:hover .subgroup-cta {
+      gap: 12px;
+    }
+    .subgroup-cta.learn-cta {
+      color: #00D4FF;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="page-transition"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+      <span class="nav-logo-text">RootsAI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="subgroups.html" class="active">Sub Groups</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="subgroups.html">Sub Groups</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<div class="page-wrapper">
+
+  <section class="subgroups-hero">
+    <div class="hero-bg-orb orb1"></div>
+    <div class="hero-bg-orb orb2"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="dot"></span> Our Ecosystem</div>
+      <h1>Explore Our <span style="background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Sub Groups</span></h1>
+      <p>Two powerful platforms under the RootsAI umbrella — choose where you want to go.</p>
+    </div>
+  </section>
+
+  <div class="subgroups-grid">
+
+    <!-- RootsAI Card -->
+    <a href="index.html" class="subgroup-card reveal">
+      <img src="rootsai-logo.png" alt="RootsAI" class="subgroup-icon icon-rootsai" style="object-fit:contain;padding:10px;" />
+      <span class="subgroup-badge">Core Platform</span>
+      <h2>RootsAI</h2>
+      <p>Our flagship AI startup — delivering cutting-edge machine learning solutions, autonomous AI agents, and enterprise-grade intelligence for businesses worldwide.</p>
+      <span class="subgroup-cta">
+        Visit RootsAI
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+    <!-- Learn With Roots Card -->
+    <a href="learnwithroots.html" class="subgroup-card reveal reveal-delay-1">
+      <img src="lwr-logo.png" alt="Learn With Roots" class="subgroup-icon icon-learn" style="object-fit:contain;padding:10px;" />
+      <span class="subgroup-badge learn">Education Platform</span>
+      <h2>Learn With Roots</h2>
+      <p>Level up your skills with expert-led courses in AI, Web Development, UI/UX Design, and more. Affordable, structured, and built for the future.</p>
+      <span class="subgroup-cta learn-cta">
+        Explore Courses
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0;">
+          <img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+          <span class="nav-logo-text">RootsAI</span>
+        </a>
+        <p>Building the next layer of human–machine collaboration through precision AI engineering, research, and product development.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sub Groups</h4>
+        <ul>
+          <li><a href="index.html">RootsAI</a></li>
+          <li><a href="learnwithroots.html">Learn With Roots</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RootsAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" title="LinkedIn">in</a>
+        <a class="social-btn" href="#" title="Twitter">𝕏</a>
+        <a class="social-btn" href="#" title="GitHub">⌥</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

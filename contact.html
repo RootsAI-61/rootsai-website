@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — RootsAI</title>
+  <meta name="description" content="Get in touch with RootsAI. Let's build something extraordinary together." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <style>
+    /* Floating background rings */
+    .contact-bg-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(123,47,255,0.08);
+      pointer-events: none;
+    }
+
+    .ring1 { width: 300px; height: 300px; top: 10%; right: 5%; animation: rotateRing 20s linear infinite; }
+    .ring2 { width: 500px; height: 500px; top: 5%; right: -5%; border-color: rgba(0,212,255,0.05); animation: rotateRing 30s linear infinite reverse; }
+    .ring3 { width: 200px; height: 200px; bottom: 15%; left: 5%; animation: rotateRing 15s linear infinite; }
+
+    @keyframes rotateRing {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* FAQ styles */
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+
+    .faq-item:hover { border-color: rgba(123,47,255,0.3); }
+
+    .faq-question {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      background: var(--bg-card);
+      transition: var(--transition);
+      user-select: none;
+    }
+
+    .faq-question:hover { background: var(--bg-card-hover); }
+
+    .faq-arrow {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: rgba(123,47,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      color: var(--violet-light);
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      background: rgba(123,47,255,0.03);
+    }
+
+    .faq-item.open .faq-answer { max-height: 200px; }
+
+    .faq-answer p {
+      padding: 0 24px 20px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* Map placeholder */
+    .map-placeholder {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .map-placeholder .map-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .map-placeholder p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Social links row */
+    .social-links-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .social-link-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-link-btn:hover {
+      border-color: var(--violet);
+      color: var(--violet-light);
+      background: rgba(123,47,255,0.06);
+    }
+
+    /* Success animation overlay on the form */
+    .form-success-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(10,10,15,0.95);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      border-radius: var(--radius-xl);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 10;
+    }
+
+    .form-success-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .success-icon {
+      font-size: 3rem;
+      animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes bounceIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .success-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .success-text {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      text-align: center;
+      max-width: 280px;
+    }
+
+    .success-reset {
+      padding: 10px 24px;
+      background: var(--gradient-hero);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: white;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="page-transition"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⚡</div>
+      <span class="nav-logo-text">RootsAI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="subgroups.html">Sub Groups</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" style="position:relative;overflow:hidden;">
+    <!-- Floating rings background -->
+    <div class="contact-bg-ring ring1"></div>
+    <div class="contact-bg-ring ring2"></div>
+    <div class="contact-bg-ring ring3"></div>
+
+    <div class="page-hero-bg"></div>
+    <div class="container" style="position:relative;z-index:2;">
+      <span class="section-eyebrow">Get in Touch</span>
+      <h1 class="section-title" style="font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:20px;">
+        Let's Build Something<br /><span>Extraordinary</span>
+      </h1>
+      <p style="color:var(--text-secondary);font-size:1.05rem;max-width:500px;margin:0 auto;">
+        Whether you have a project in mind, a question about our services, or just want to explore what's possible — we'd love to hear from you.
+      </p>
+    </div>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: Info -->
+        <div>
+          <h3>How Can We Help?</h3>
+          <p>Tell us about your project or challenge. Our team typically responds within 4 business hours — because great ideas shouldn't wait.</p>
+
+          <div class="contact-methods">
+            <div class="contact-method reveal reveal-delay-1">
+              <div class="contact-method-icon">📧</div>
+              <div class="contact-method-text">
+                <strong>Email Us</strong>
+                <span>Rootsai61@gmail.com</span>
+              </div>
+            </div>
+            <div class="contact-method reveal reveal-delay-2">
+              <div class="contact-method-icon">📞</div>
+              <div class="contact-method-text">
+                <strong>Call Us</strong>
+                <span>+92-314-0712495</span>
+              </div>
+            </div>
+            <div class="contact-method reveal reveal-delay-3">
+              <div class="contact-method-icon">📍</div>
+              <div class="contact-method-text">
+                <strong>Office</strong>
+                <span>Islamabad & Lahore, Pakistan</span>
+              </div>
+            </div>
+            <div class="contact-method reveal reveal-delay-4">
+              <div class="contact-method-icon">🕐</div>
+              <div class="contact-method-text">
+                <strong>Response Time</strong>
+                <span>Within 4 business hours</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social links -->
+          <div class="social-links-row reveal">
+            <a href="#" class="social-link-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="#" class="social-link-btn">𝕏 Twitter</a>
+            <a href="#" class="social-link-btn">⌥ GitHub</a>
+          </div>
+
+          <!-- Map placeholder -->
+          <div class="map-placeholder reveal" style="margin-top:28px;">
+            <div class="map-icon">🗺️</div>
+            <p>Islamabad · Lahore </p>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal" style="position:relative;">
+          <div class="contact-form-card" style="position:relative;">
+
+            <!-- Success Overlay -->
+            <div class="form-success-overlay" id="form-success">
+              <div class="success-icon">🚀</div>
+              <h3 class="success-title">Message Sent!</h3>
+              <p class="success-text">Thanks for reaching out. We'll get back to you within 4 business hours.</p>
+              <button class="success-reset" onclick="resetForm()">Send Another</button>
+            </div>
+
+            <h3 style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Send a Message</h3>
+            <p style="color:var(--text-secondary);font-size:0.88rem;margin-bottom:28px;">Fill in the form and we'll reach out to schedule a call.</p>
+
+            <form id="contact-form" novalidate>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="name">Full Name</label>
+                  <input type="text" id="name" class="form-input" placeholder="Abdullah" autocomplete="name" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="email">Email Address</label>
+                  <input type="email" id="email" class="form-input" placeholder="Rootsai61@gmail.com" autocomplete="email" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="company">Company / Project</label>
+                <input type="text" id="company" class="form-input" placeholder="Your startup or company name" />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="service">Service Interested In</label>
+                <select id="service" class="form-input" style="cursor:pointer;appearance:auto;">
+                  <option value="" disabled selected>Select a service...</option>
+                  <option>AI Solutions</option>
+                  <option>Machine Learning</option>
+                  <option>Deep Learning</option>
+                  <option>Computer Vision</option>
+                  <option>AI Agents</option>
+                  <option>AI Automation</option>
+                  <option>AI Chatbot Development</option>
+                  <option>N8N Automation</option>
+                  <option>Twilio Integration</option>
+                  <option>Web Development</option>
+                  <option>Data Science</option>
+                  <option>UI/UX Design</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="message">Tell Us About Your Project</label>
+                <textarea id="message" class="form-textarea" placeholder="Describe your project, goals, timeline, and budget range..."></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                <div class="spinner"></div>
+                <span class="btn-text">Send Message →</span>
+              </button>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FAQ SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">FAQ</span>
+        <h2 class="section-title">Common <span>Questions</span></h2>
+      </div>
+
+      <div style="max-width:720px;margin:0 auto;">
+
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How long does an AI project typically take?
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Timelines vary by scope. A focused AI chatbot or automation can be production-ready in 4–6 weeks. More complex ML systems or full products typically take 8–16 weeks. We always share a detailed project timeline after the discovery call.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Do you work with early-stage startups?
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely. We love working with founders at the idea stage through to scale. We offer flexible engagement models — from short advisory sprints to full-team embedding — that fit early-stage budgets and timelines.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-2">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What's your pricing model?
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>We work on project-based fixed pricing or monthly retainers depending on the engagement type. After the discovery call, we send a detailed scoping document with transparent pricing. No hidden fees, ever.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-3">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Will you sign an NDA?
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes, always. We take client confidentiality very seriously. An NDA is standard practice for every engagement at RootsAI, signed before any technical discussions begin.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-4">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Can you work with our existing tech stack?
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-answer">
+            <p>Yes. We're stack-agnostic and integrate with your existing infrastructure. Whether you're on AWS, GCP, Azure, or a custom setup — we adapt, not the other way around.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><div class="nav-logo-icon">⚡</div><span class="nav-logo-text">RootsAI</span></a>
+        <p>Building the next layer of human–machine collaboration through precision AI engineering and product development.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="products.html">Products</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">AI Solutions</a></li><li><a href="services.html">ML & Deep Learning</a></li><li><a href="services.html">AI Agents</a></li><li><a href="services.html">Automation</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">GitHub</a></li><li><a href="#">Blog</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RootsAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">⌥</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="js/script.js"></script>
+<script>
+  /* FAQ Toggle */
+  function toggleFaq(questionEl) {
+    const item = questionEl.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    // Toggle current
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* Override contact form for success overlay */
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if (!name || !email || !message) {
+        showToast('⚠️ Please fill in name, email, and message');
+        return;
+      }
+      const btn = form.querySelector('.submit-btn');
+      btn.classList.add('loading');
+      setTimeout(() => {
+        btn.classList.remove('loading');
+        document.getElementById('form-success').classList.add('show');
+      }, 1600);
+    });
+  });
+
+  function resetForm() {
+    document.getElementById('form-success').classList.remove('show');
+    document.getElementById('contact-form').reset();
+    const btn = document.querySelector('.submit-btn');
+    btn.classList.remove('success');
+    btn.querySelector('.btn-text').textContent = 'Send Message →';
+  }
+
+  function showToast(msg) {
+    let t = document.querySelector('.toast');
+    if (!t) { t = document.createElement('div'); t.className='toast'; document.body.appendChild(t); }
+    t.innerHTML = `<span>⚠️</span><span>${msg}</span>`;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+</script>
+</body>
+</html>

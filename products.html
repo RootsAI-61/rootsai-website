@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — RootsAI</title>
+  <meta name="description" content="Explore RootsAI's flagship products — SmartCareer Sight, RootsChat, and AI Tutor." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="rootsai-logo.png" />
+  <style>
+    .product-card-full {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card-full:hover {
+      border-color: var(--cyan);
+      transform: translateY(-10px);
+      box-shadow: 0 24px 60px rgba(0,212,255,0.12);
+    }
+
+    .product-card-header {
+      padding: 40px 36px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-card-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      transition: opacity 0.4s;
+    }
+
+    .product-card-full:nth-child(1) .product-card-header::before {
+      background: linear-gradient(135deg, #7B2FFF, #00D4FF);
+    }
+    .product-card-full:nth-child(2) .product-card-header::before {
+      background: linear-gradient(135deg, #FF6B6B, #FFD93D);
+    }
+    .product-card-full:nth-child(3) .product-card-header::before {
+      background: linear-gradient(135deg, #00C851, #00D4FF);
+    }
+
+    .product-card-full:hover .product-card-header::before { opacity: 0.14; }
+
+    .product-emoji {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+    }
+
+    .product-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .status-live { background: rgba(0,200,81,0.12); border: 1px solid rgba(0,200,81,0.25); color: #00C851; }
+    .status-beta { background: rgba(255,165,0,0.12); border: 1px solid rgba(255,165,0,0.25); color: #FFA500; }
+    .status-soon { background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.25); color: var(--cyan); }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      animation: pulse 2s infinite;
+    }
+
+    .product-name-lg {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .product-tagline {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .product-card-body {
+      padding: 28px 36px 36px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .product-features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .feature-check {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: rgba(0,212,255,0.12);
+      border: 1px solid rgba(0,212,255,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--cyan);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .product-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+
+    .tech-pill {
+      padding: 4px 10px;
+      background: rgba(123,47,255,0.08);
+      border: 1px solid rgba(123,47,255,0.15);
+      border-radius: 100px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--violet-light);
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .btn-view-more {
+      flex: 1;
+      padding: 14px 20px;
+      background: var(--gradient-hero);
+      border: none;
+      border-radius: var(--radius-sm);
+      color: white;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-view-more:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--violet-glow);
+    }
+
+    .btn-demo {
+      padding: 14px 20px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-demo:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Comparison table */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 0.9rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table th {
+      background: rgba(123,47,255,0.08);
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-weight: 600;
+    }
+
+    .compare-table td {
+      color: var(--text-secondary);
+      background: var(--bg-card);
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    .compare-table td:first-child {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .check-yes { color: var(--cyan); }
+    .check-no { color: var(--text-muted); }
+
+    @media (max-width: 768px) {
+      .product-card-header { padding: 28px 24px 20px; }
+      .product-card-body { padding: 20px 24px 28px; }
+      .product-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="page-transition"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+      <span class="nav-logo-text">RootsAI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="subgroups.html">Sub Groups</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="subgroups.html">Sub Groups</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+    <div class="container" style="position:relative;z-index:2;">
+      <span class="section-eyebrow">Our Products</span>
+      <h1 class="section-title" style="font-size:clamp(2.2rem,5vw,3.8rem);margin-bottom:20px;">
+        AI Products That<br /><span>Shape Industries</span>
+      </h1>
+      <p style="color:var(--text-secondary);font-size:1.1rem;max-width:540px;margin:0 auto 32px;">
+        Each product is born from a real problem, engineered to solve it at scale, and designed to deliver measurable value from day one.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <span style="padding:6px 16px;background:rgba(0,200,81,0.1);border:1px solid rgba(0,200,81,0.2);border-radius:100px;font-size:0.8rem;color:#00C851;">● 1 Live</span>
+        <span style="padding:6px 16px;background:rgba(255,165,0,0.1);border:1px solid rgba(255,165,0,0.2);border-radius:100px;font-size:0.8rem;color:#FFA500;">◐ 1 In Beta</span>
+        <span style="padding:6px 16px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.2);border-radius:100px;font-size:0.8rem;color:var(--cyan);">○ 1 Coming Soon</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <section class="section" style="padding-top:20px;">
+    <div class="container">
+      <div class="products-grid">
+
+        <!-- Product 1: SmartCareer Sight -->
+        <div class="product-card-full reveal reveal-delay-1">
+          <div class="product-card-header">
+            <span class="product-emoji">🎯</span>
+            <div class="product-status status-live">
+              <span class="status-dot"></span> Live
+            </div>
+            <h2 class="product-name-lg">SmartCareer Sight</h2>
+            <p class="product-tagline">AI-powered career intelligence that analyzes your profile and predicts your next best career move with surgical precision.</p>
+          </div>
+          <div class="product-card-body">
+            <ul class="product-features-list">
+              <li><span class="feature-check">✓</span>Resume analysis with ATS compatibility scoring</li>
+              <li><span class="feature-check">✓</span>Personalized job matching via semantic search</li>
+              <li><span class="feature-check">✓</span>Skills gap analysis with learning roadmaps</li>
+              <li><span class="feature-check">✓</span>Interview preparation powered by LLMs</li>
+              <li><span class="feature-check">✓</span>Salary benchmarking across 50+ industries</li>
+            </ul>
+            <div class="product-tech-stack">
+              <span class="tech-pill">GPT-4o</span>
+              <span class="tech-pill">RAG</span>
+              <span class="tech-pill">Next.js</span>
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">Pinecone</span>
+            </div>
+            <div class="product-actions">
+              <a href="#" class="btn-view-more">
+                View More
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#" class="btn-demo">Live Demo →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2: RootsChat -->
+        <div class="product-card-full reveal reveal-delay-2">
+          <div class="product-card-header">
+            <span class="product-emoji">🌳</span>
+            <div class="product-status status-beta">
+              <span class="status-dot"></span> Beta
+            </div>
+            <h2 class="product-name-lg">RootsChat</h2>
+            <p class="product-tagline">A conversational AI platform that connects families to their heritage — enabling intelligent genealogy exploration through natural language.</p>
+          </div>
+          <div class="product-card-body">
+            <ul class="product-features-list">
+              <li><span class="feature-check">✓</span>AI-powered family tree building and research</li>
+              <li><span class="feature-check">✓</span>Natural language queries on historical records</li>
+              <li><span class="feature-check">✓</span>Multilingual support for 40+ languages</li>
+              <li><span class="feature-check">✓</span>Document OCR and extraction from old photos</li>
+              <li><span class="feature-check">✓</span>Privacy-first architecture with end-to-end encryption</li>
+            </ul>
+            <div class="product-tech-stack">
+              <span class="tech-pill">Claude 3.5</span>
+              <span class="tech-pill">OCR</span>
+              <span class="tech-pill">React</span>
+              <span class="tech-pill">FastAPI</span>
+              <span class="tech-pill">PostgreSQL</span>
+            </div>
+            <div class="product-actions">
+              <a href="#" class="btn-view-more">
+                View More
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="#" class="btn-demo">Join Beta →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3: AI Tutor -->
+        <div class="product-card-full reveal reveal-delay-3">
+          <div class="product-card-header">
+            <span class="product-emoji">📚</span>
+            <div class="product-status status-soon">
+              <span class="status-dot"></span> Coming Soon
+            </div>
+            <h2 class="product-name-lg">AI Tutor</h2>
+            <p class="product-tagline">A Socratic AI learning companion that adapts to each student's pace, learning style, and knowledge level in real time.</p>
+          </div>
+          <div class="product-card-body">
+            <ul class="product-features-list">
+              <li><span class="feature-check">✓</span>Adaptive curriculum generation per learner</li>
+              <li><span class="feature-check">✓</span>Real-time doubt resolution with visual explanations</li>
+              <li><span class="feature-check">✓</span>Progress analytics for students and teachers</li>
+              <li><span class="feature-check">✓</span>Gamified learning with streaks and achievements</li>
+              <li><span class="feature-check">✓</span>Covers K-12, university, and professional certifications</li>
+            </ul>
+            <div class="product-tech-stack">
+              <span class="tech-pill">Fine-tuned LLM</span>
+              <span class="tech-pill">Knowledge Graph</span>
+              <span class="tech-pill">React Native</span>
+              <span class="tech-pill">MongoDB</span>
+            </div>
+            <div class="product-actions">
+              <a href="#" class="btn-view-more">
+                View More
+                <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <a href="contact.html" class="btn-demo">Get Early Access</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FEATURE COMPARISON TABLE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Compare Products</span>
+        <h2 class="section-title">Find Your <span>Perfect Fit</span></h2>
+      </div>
+      <div style="overflow-x:auto;" class="reveal">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>🎯 SmartCareer Sight</th>
+              <th>🌳 RootsChat</th>
+              <th>📚 AI Tutor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AI-Powered Personalization</td>
+              <td class="check-yes">✓ Yes</td>
+              <td class="check-yes">✓ Yes</td>
+              <td class="check-yes">✓ Yes</td>
+            </tr>
+            <tr>
+              <td>Mobile App</td>
+              <td class="check-yes">✓ Yes</td>
+              <td class="check-no">— Coming</td>
+              <td class="check-yes">✓ Yes</td>
+            </tr>
+            <tr>
+              <td>API Access</td>
+              <td class="check-yes">✓ Yes</td>
+              <td class="check-no">— Beta</td>
+              <td class="check-no">— Planned</td>
+            </tr>
+            <tr>
+              <td>Free Tier</td>
+              <td class="check-yes">✓ Yes</td>
+              <td class="check-yes">✓ Yes</td>
+              <td class="check-yes">✓ Yes</td>
+            </tr>
+            <tr>
+              <td>Team / Enterprise Plan</td>
+              <td class="check-yes">✓ Yes</td>
+              <td class="check-no">— Planned</td>
+              <td class="check-yes">✓ Yes</td>
+            </tr>
+            <tr>
+              <td>Status</td>
+              <td style="color:#00C851;font-weight:600;">● Live</td>
+              <td style="color:#FFA500;font-weight:600;">◐ Beta</td>
+              <td style="color:var(--cyan);font-weight:600;">○ Coming Q2 2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUILD WITH US -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div style="background:var(--gradient-card);border:1px solid var(--border-glow);border-radius:var(--radius-xl);padding:56px;text-align:center;position:relative;overflow:hidden;" class="reveal">
+        <div style="position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:300px;background:radial-gradient(ellipse,rgba(123,47,255,0.12) 0%,transparent 70%);pointer-events:none;"></div>
+        <span class="section-eyebrow" style="display:block;margin-bottom:16px;">Build Together</span>
+        <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:12px;">
+          Have a Product Idea?
+        </h2>
+        <p style="color:var(--text-secondary);margin-bottom:32px;max-width:440px;margin-left:auto;margin-right:auto;">
+          We partner with founders to co-build AI products — from concept validation to full market launch.
+        </p>
+        <a href="contact.html" class="btn-primary">Let's Co-Build →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" /><span class="nav-logo-text">RootsAI</span></a>
+        <p>Building the next layer of human–machine collaboration through precision AI engineering and product development.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="products.html">Products</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="#">SmartCareer Sight</a></li><li><a href="#">RootsChat</a></li><li><a href="#">AI Tutor</a></li><li><a href="#">Roadmap</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">GitHub</a></li><li><a href="#">Blog</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RootsAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">⌥</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>

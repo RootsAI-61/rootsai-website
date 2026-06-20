@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn With Roots — Courses</title>
+  <meta name="description" content="Expert-led courses in AI, Web Development, UI/UX Design and more. Join Learn With Roots to upskill for the future." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="lwr-logo.png" />
+  <style>
+    /* ── Learn With Roots brand overrides ── */
+    :root {
+      --lwr-green: #00C896;
+      --lwr-teal:  #00D4FF;
+    }
+
+    .lwr-navbar .nav-logo-icon { background: transparent !important; }
+    .lwr-brand-text { background: linear-gradient(135deg, #00C896, #00D4FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* Hero */
+    .lwr-hero {
+      min-height: 52vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 130px 24px 60px;
+      position: relative;
+    }
+    .lwr-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 18px;
+      line-height: 1.15;
+    }
+    .lwr-hero p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 540px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .lwr-hero-badges {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .lwr-badge {
+      background: rgba(0,200,150,0.12);
+      color: var(--lwr-green);
+      border: 1px solid rgba(0,200,150,0.25);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 6px 14px;
+    }
+
+    /* Stats */
+    .lwr-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 24px;
+      max-width: 700px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .lwr-stat {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .lwr-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #00C896, #00D4FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .lwr-stat-label {
+      color: var(--text-secondary);
+      font-size: 0.82rem;
+      margin-top: 4px;
+    }
+
+    /* Courses Grid */
+    .courses-section {
+      padding: 0 24px 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .courses-section-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .courses-section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .courses-section-header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .course-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .course-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,200,150,0.15);
+      border-color: rgba(0,200,150,0.3);
+    }
+    .course-banner {
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-body {
+      padding: 24px 24px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .course-cat {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .course-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .course-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex: 1;
+    }
+    .course-topics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .topic-tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      padding: 3px 10px;
+      border-radius: 10px;
+    }
+    .course-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .course-duration {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    .course-pricing {
+      text-align: right;
+    }
+    .price-full {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .price-note {
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      margin-top: 1px;
+    }
+    .price-tag-monthly {
+      font-size: 0.8rem;
+      color: var(--lwr-green);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Banner color themes */
+    .banner-ai    { background: linear-gradient(135deg, #1a0536 0%, #3b1280 50%, #0d2b45 100%); }
+    .banner-web   { background: linear-gradient(135deg, #012030 0%, #024b7a 50%, #013020 100%); }
+    .banner-uiux  { background: linear-gradient(135deg, #2a0030 0%, #6b0080 50%, #1a0036 100%); }
+    .banner-data  { background: linear-gradient(135deg, #001a20 0%, #005566 50%, #0a2000 100%); }
+    .banner-ml    { background: linear-gradient(135deg, #200030 0%, #7b1560 50%, #002020 100%); }
+    .banner-cyber { background: linear-gradient(135deg, #001018 0%, #002040 50%, #101800 100%); }
+
+    /* Cat badge colors */
+    .cat-ai     { background: rgba(123,47,255,0.15); color: #a78bfa; }
+    .cat-web    { background: rgba(0,212,255,0.12);  color: #00D4FF; }
+    .cat-uiux   { background: rgba(255,100,200,0.12);color: #ff64c8; }
+    .cat-data   { background: rgba(0,200,150,0.12);  color: #00C896; }
+    .cat-ml     { background: rgba(255,180,0,0.12);  color: #ffb400; }
+    .cat-cyber  { background: rgba(100,200,255,0.12);color: #64c8ff; }
+
+    /* Enrollment CTA */
+    .enroll-section {
+      background: linear-gradient(135deg, rgba(0,200,150,0.1), rgba(0,212,255,0.08));
+      border: 1px solid rgba(0,200,150,0.25);
+      border-radius: 24px;
+      padding: 56px 40px;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .enroll-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+    }
+    .enroll-section p {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      max-width: 460px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-lwr {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #00C896, #00D4FF);
+      color: #000;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-lwr:hover { opacity: 0.9; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="page-transition"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar lwr-navbar">
+  <div class="nav-container">
+    <a href="subgroups.html" class="nav-logo">
+      <img src="lwr-logo.png" alt="Learn With Roots" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+      <span class="nav-logo-text">Learn With Roots</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">RootsAI Home</a></li>
+      <li><a href="subgroups.html">Sub Groups</a></li>
+      <li><a href="learnwithroots.html" class="active">Courses</a></li>
+      <li><a href="contact.html" class="nav-cta">Enroll Now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <a href="index.html">RootsAI Home</a>
+  <a href="subgroups.html">Sub Groups</a>
+  <a href="learnwithroots.html">Courses</a>
+  <a href="contact.html">Enroll Now</a>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- HERO -->
+  <section class="lwr-hero">
+    <div class="hero-bg-orb orb1" style="background:radial-gradient(circle,rgba(0,200,150,0.15),transparent 70%);"></div>
+    <div class="hero-bg-orb orb2" style="background:radial-gradient(circle,rgba(0,212,255,0.1),transparent 70%);"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow"><span class="dot" style="background:#00C896;"></span> by RootsAI</div>
+      <h1>
+        Learn the Skills<br />
+        <span class="lwr-brand-text">That Build the Future</span>
+      </h1>
+      <p>Expert-led courses in AI, Web Development, UI/UX Design, Data Science, and more — structured, affordable, and designed for real-world careers.</p>
+      <div class="lwr-hero-badges">
+        <span class="lwr-badge">🤖 AI & Machine Learning</span>
+        <span class="lwr-badge">💻 Web Development</span>
+        <span class="lwr-badge">🎨 UI/UX Design</span>
+        <span class="lwr-badge">📊 Data Science</span>
+        <span class="lwr-badge">🔐 Cybersecurity</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="lwr-stats reveal">
+    <div class="lwr-stat">
+      <div class="lwr-stat-num">6+</div>
+      <div class="lwr-stat-label">Courses Offered</div>
+    </div>
+    <div class="lwr-stat">
+      <div class="lwr-stat-num">3</div>
+      <div class="lwr-stat-label">Months Duration</div>
+    </div>
+    <div class="lwr-stat">
+      <div class="lwr-stat-num">₨20K</div>
+      <div class="lwr-stat-label">Full Course Fee</div>
+    </div>
+    <div class="lwr-stat">
+      <div class="lwr-stat-num">100%</div>
+      <div class="lwr-stat-label">Project-Based</div>
+    </div>
+  </div>
+
+  <!-- COURSES -->
+  <div class="courses-section">
+    <div class="courses-section-header reveal">
+      <span class="section-eyebrow">Our Programs</span>
+      <h2>All Courses — <span style="background:linear-gradient(135deg,#00C896,#00D4FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">One Platform</span></h2>
+      <p>All courses run for 3 months with hands-on projects, live sessions, and a completion certificate.</p>
+    </div>
+
+    <div class="courses-grid">
+
+      <!-- AI Course -->
+      <div class="course-card reveal">
+        <div class="course-banner banner-ai">🤖</div>
+        <div class="course-body">
+          <span class="course-cat cat-ai">Artificial Intelligence</span>
+          <h3>AI Foundations & Applications</h3>
+          <p>Master the core concepts of Artificial Intelligence — from neural networks and NLP to building your own AI-powered apps. Perfect for beginners and intermediate learners.</p>
+          <div class="course-topics">
+            <span class="topic-tag">Prompt Engineering</span>
+            <span class="topic-tag">LLMs</span>
+            <span class="topic-tag">AI APIs</span>
+            <span class="topic-tag">Python for AI</span>
+            <span class="topic-tag">Chatbots</span>
+          </div>
+          <div class="course-meta">
+            <div class="course-duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              3 Months · Live + Recorded
+            </div>
+            <div class="course-pricing">
+              <div class="price-full">₨20,000</div>
+              <div class="price-note">Full Course</div>
+              <div class="price-tag-monthly">≈ ₨7,000/month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web Dev Course -->
+      <div class="course-card reveal reveal-delay-1">
+        <div class="course-banner banner-web">💻</div>
+        <div class="course-body">
+          <span class="course-cat cat-web">Web Development</span>
+          <h3>Full-Stack Web Development</h3>
+          <p>Go from zero to full-stack developer. Learn HTML, CSS, JavaScript, React, Node.js, and deploy real-world projects that can land you a job or freelance clients.</p>
+          <div class="course-topics">
+            <span class="topic-tag">HTML & CSS</span>
+            <span class="topic-tag">JavaScript</span>
+            <span class="topic-tag">React.js</span>
+            <span class="topic-tag">Node.js</span>
+            <span class="topic-tag">MongoDB</span>
+            <span class="topic-tag">Deployment</span>
+          </div>
+          <div class="course-meta">
+            <div class="course-duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              3 Months · Live + Recorded
+            </div>
+            <div class="course-pricing">
+              <div class="price-full">₨20,000</div>
+              <div class="price-note">Full Course</div>
+              <div class="price-tag-monthly">≈ ₨7,000/month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UI/UX Course -->
+      <div class="course-card reveal reveal-delay-2">
+        <div class="course-banner banner-uiux">🎨</div>
+        <div class="course-body">
+          <span class="course-cat cat-uiux">UI/UX Design</span>
+          <h3>UI/UX Design Masterclass</h3>
+          <p>Learn to design beautiful, user-friendly interfaces using Figma. Understand UX research, wireframing, prototyping, and build a portfolio that gets you hired.</p>
+          <div class="course-topics">
+            <span class="topic-tag">Figma</span>
+            <span class="topic-tag">Wireframing</span>
+            <span class="topic-tag">Prototyping</span>
+            <span class="topic-tag">UX Research</span>
+            <span class="topic-tag">Design Systems</span>
+          </div>
+          <div class="course-meta">
+            <div class="course-duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              3 Months · Live + Recorded
+            </div>
+            <div class="course-pricing">
+              <div class="price-full">₨20,000</div>
+              <div class="price-note">Full Course</div>
+              <div class="price-tag-monthly">≈ ₨7,000/month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Science -->
+      <div class="course-card reveal">
+        <div class="course-banner banner-data">📊</div>
+        <div class="course-body">
+          <span class="course-cat cat-data">Data Science</span>
+          <h3>Data Science & Analytics</h3>
+          <p>Unlock the power of data. Learn Python, Pandas, data visualization, statistical analysis, and build machine learning models to solve real business problems.</p>
+          <div class="course-topics">
+            <span class="topic-tag">Python</span>
+            <span class="topic-tag">Pandas</span>
+            <span class="topic-tag">Matplotlib</span>
+            <span class="topic-tag">Scikit-Learn</span>
+            <span class="topic-tag">Power BI</span>
+          </div>
+          <div class="course-meta">
+            <div class="course-duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              3 Months · Live + Recorded
+            </div>
+            <div class="course-pricing">
+              <div class="price-full">₨20,000</div>
+              <div class="price-note">Full Course</div>
+              <div class="price-tag-monthly">≈ ₨7,000/month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Machine Learning -->
+      <div class="course-card reveal reveal-delay-1">
+        <div class="course-banner banner-ml">🧠</div>
+        <div class="course-body">
+          <span class="course-cat cat-ml">Machine Learning</span>
+          <h3>Machine Learning Engineering</h3>
+          <p>Deep-dive into supervised and unsupervised learning, neural networks, model training, and deployment. Build and ship your own ML models to production.</p>
+          <div class="course-topics">
+            <span class="topic-tag">Deep Learning</span>
+            <span class="topic-tag">TensorFlow</span>
+            <span class="topic-tag">PyTorch</span>
+            <span class="topic-tag">CNNs</span>
+            <span class="topic-tag">Model Deployment</span>
+          </div>
+          <div class="course-meta">
+            <div class="course-duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              3 Months · Live + Recorded
+            </div>
+            <div class="course-pricing">
+              <div class="price-full">₨20,000</div>
+              <div class="price-note">Full Course</div>
+              <div class="price-tag-monthly">≈ ₨7,000/month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cybersecurity -->
+      <div class="course-card reveal reveal-delay-2">
+        <div class="course-banner banner-cyber">🔐</div>
+        <div class="course-body">
+          <span class="course-cat cat-cyber">Cybersecurity</span>
+          <h3>Ethical Hacking & Cybersecurity</h3>
+          <p>Learn to think like a hacker — ethically. Master network security, penetration testing, vulnerability analysis, and get certified for one of the most in-demand careers.</p>
+          <div class="course-topics">
+            <span class="topic-tag">Network Security</span>
+            <span class="topic-tag">Pen Testing</span>
+            <span class="topic-tag">Kali Linux</span>
+            <span class="topic-tag">OWASP Top 10</span>
+            <span class="topic-tag">CTF</span>
+          </div>
+          <div class="course-meta">
+            <div class="course-duration">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              3 Months · Live + Recorded
+            </div>
+            <div class="course-pricing">
+              <div class="price-full">₨20,000</div>
+              <div class="price-note">Full Course</div>
+              <div class="price-tag-monthly">≈ ₨7,000/month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end courses-grid -->
+  </div><!-- end courses-section -->
+
+  <!-- ENROLLMENT CTA -->
+  <div style="padding: 0 24px 100px;">
+    <div class="enroll-section reveal">
+      <div style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(0,200,150,0.15),transparent 70%);pointer-events:none;"></div>
+      <span class="section-eyebrow" style="display:block;margin-bottom:14px;">Ready to Start?</span>
+      <h2>Enroll Today &amp; Start<br/>Building Your Future</h2>
+      <p>All courses are 3 months long with live sessions, recorded videos, projects, mentorship, and a certificate. Full fee: <strong style="color:var(--text-primary);">₨20,000</strong> — also payable monthly at ~₨7,000/month.</p>
+      <a href="contact.html" class="btn-lwr">
+        Apply Now
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="learnwithroots.html" class="nav-logo" style="margin-bottom:0;">
+          <img src="lwr-logo.png" alt="Learn With Roots" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+          <span class="nav-logo-text">Learn With Roots</span>
+        </a>
+        <p>An education platform by RootsAI — empowering the next generation of developers, designers, and AI engineers.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Courses</h4>
+        <ul>
+          <li><a href="learnwithroots.html">AI Foundations</a></li>
+          <li><a href="learnwithroots.html">Web Development</a></li>
+          <li><a href="learnwithroots.html">UI/UX Design</a></li>
+          <li><a href="learnwithroots.html">Data Science</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>RootsAI</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="subgroups.html">Sub Groups</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Learn With Roots — A RootsAI Education Platform. All rights reserved.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" title="LinkedIn">in</a>
+        <a class="social-btn" href="#" title="Twitter">𝕏</a>
+        <a class="social-btn" href="#" title="GitHub">⌥</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RootsAI — Intelligence Redefined</title>
+  <meta name="description" content="RootsAI is a next-generation artificial intelligence startup building intelligent solutions for tomorrow's world." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="rootsai-logo.png" />
+</head>
+<body>
+
+<!-- PARTICLE CANVAS -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- PAGE TRANSITION -->
+<div class="page-transition"></div>
+
+
+
+<!-- ======================================================
+     NAVBAR
+====================================================== -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+      <span class="nav-logo-text">RootsAI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="subgroups.html">Sub Groups</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="subgroups.html">Sub Groups</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<!-- ======================================================
+     MAIN CONTENT
+====================================================== -->
+<div class="page-wrapper">
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-bg-orb orb1"></div>
+    <div class="hero-bg-orb orb2"></div>
+    <div class="hero-bg-orb orb3"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Now in Open Beta — Join 500+ Innovators
+      </div>
+
+      <h1 class="hero-title">
+        Building the Future with<br />
+        <span class="line-gradient"><span class="typewriter" id="typewriter">Intelligent Solutions</span></span>
+      </h1>
+
+      <p class="hero-subtitle">
+        RootsAI delivers cutting-edge artificial intelligence solutions — from machine learning pipelines to autonomous AI agents — helping enterprises move faster, smarter, and bolder.
+      </p>
+
+      <div class="hero-actions">
+        <a href="services.html" class="btn-primary">
+          Explore Services
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="about.html" class="btn-secondary">
+          Our Story
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number" data-count="150" data-suffix="+">0+</span>
+        <span class="stat-label">Projects Delivered</span>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <span class="stat-number" data-count="50" data-suffix="+">0+</span>
+        <span class="stat-label">Enterprise Clients</span>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <span class="stat-number" data-count="12" data-suffix="">0</span>
+        <span class="stat-label">AI Products Built</span>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <span class="stat-number" data-count="4.9" data-suffix="★">0★</span>
+        <span class="stat-label">Client Satisfaction</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISION SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Our Vision</span>
+        <h2 class="section-title">Why <span>RootsAI</span> Exists</h2>
+        <p class="section-subtitle">We're building a future where intelligent systems work alongside every business, every team, every idea — not just the ones with billion-dollar budgets.</p>
+      </div>
+
+      <div class="vision-grid">
+        <div class="vision-card reveal reveal-delay-1">
+          <div class="vision-icon-wrap">
+            <span class="vision-icon">🌱</span>
+          </div>
+          <h3 class="vision-title">Roots First</h3>
+          <p class="vision-text">We start from the ground up — real problems, real constraints, real people. AI that's grown from genuine need, not hype.</p>
+        </div>
+        <div class="vision-card reveal reveal-delay-2">
+          <div class="vision-icon-wrap">
+            <span class="vision-icon">🚀</span>
+          </div>
+          <h3 class="vision-title">Built to Scale</h3>
+          <p class="vision-text">From a single prototype to enterprise-grade deployment — our systems are engineered to grow without breaking.</p>
+        </div>
+        <div class="vision-card reveal reveal-delay-3">
+          <div class="vision-icon-wrap">
+            <span class="vision-icon">🔮</span>
+          </div>
+          <h3 class="vision-title">Future Native</h3>
+          <p class="vision-text">We don't chase trends — we build for where AI is heading, so our clients are always a step ahead.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Our Founders</span>
+        <h2 class="section-title">The Minds Behind <span>RootsAI</span></h2>
+        <p class="section-subtitle">Visionary leaders uniting technology, business, and human ingenuity to build tomorrow's AI infrastructure.</p>
+      </div>
+
+      <!-- CEO — Spotlight -->
+      <div class="ceo-spotlight reveal">
+        <div class="ceo-spotlight-card">
+          <img src="CEO.png" alt="Abdullah Rizwan" class="ceo-spotlight-avatar" />
+          <div class="leader-role">CEO &amp; Founder</div>
+          <h3 class="ceo-spotlight-name">Abdullah Rizwan</h3>
+          <p class="ceo-spotlight-bio">Full-stack AI engineer turned founder. Abdullah architects RootsAI's products end-to-end — from model training to production infrastructure — while steering the company's global vision, growth strategy, and client partnerships. He believes the best AI companies are built by people who can still ship code themselves.</p>
+          <div class="ceo-spotlight-tags">
+            <span class="ceo-tag">Full-Stack AI Engineer</span>
+            <span class="ceo-tag">Product Strategy</span>
+            <span class="ceo-tag">Founder</span>
+          </div>
+          <a href="https://www.linkedin.com/in/abdullah-rizwan-183a10262" class="leader-linkedin" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            View LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div class="leadership-grid leadership-grid-secondary">
+
+        <!-- CTO -->
+        <div class="leader-card reveal reveal-delay-1">
+          <img src="CTO.jfif" alt="Zaryab Ali" class="leader-avatar" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 12px;" />
+          <div class="leader-role">CTO</div>
+          <h3 class="leader-name">Zaryab Ali</h3>
+          <p class="leader-bio">Deep learning researcher & full-stack AI architect. Zaryab drives RootsAI's technical vision, building robust and scalable AI systems from the ground up.</p>
+          <a href="https://www.linkedin.com/in/mzaryabali/" class="leader-linkedin" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            View LinkedIn
+          </a>
+        </div>
+
+        <!-- COO -->
+        <div class="leader-card reveal reveal-delay-2">
+          <img src="COO.png" alt="Azaz Ur Rehman" class="leader-avatar" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 12px;" />
+          <div class="leader-role">COO</div>
+          <h3 class="leader-name">Azaz Ur Rehman</h3>
+          <p class="leader-bio">Operations powerhouse with expertise in scaling AI teams globally. Azaz brings rigorous execution discipline to ensure RootsAI delivers at scale.</p>
+          <a href="https://www.linkedin.com/in/azaz-ur-rehman-87bb84246/" class="leader-linkedin" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            View LinkedIn
+          </a>
+        </div>
+
+        <!-- CMO -->
+        <div class="leader-card reveal reveal-delay-3">
+          <img src="CMO.png" alt="Hafeez ur Rehman" class="leader-avatar" style="width:80px;height:80px;border-radius:50%;object-fit:cover;margin:0 auto 12px;" />
+          <div class="leader-role">CMO</div>
+          <h3 class="leader-name">Hafeez ur Rehman</h3>
+          <p class="leader-bio">Marketing strategist with a passion for AI storytelling. Hafeez crafts RootsAI's brand narrative and drives growth through compelling, data-driven campaigns.</p>
+          <a href="https://www.linkedin.com/in/hafii/" class="leader-linkedin" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            View LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- WHY NEXUS SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Why RootsAI</span>
+        <h2 class="section-title">AI that <span>Actually Works</span></h2>
+        <p class="section-subtitle">We don't build demos — we build deployable, scalable intelligence that drives real business outcomes.</p>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card reveal reveal-delay-1">
+          <span class="value-icon">🎯</span>
+          <h3 class="value-title">Precision Engineering</h3>
+          <p class="value-text">Every model we build is rigorously tested, evaluated, and fine-tuned to perform at production grade from day one.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <span class="value-icon">⚡</span>
+          <h3 class="value-title">Speed to Market</h3>
+          <p class="value-text">Our battle-tested frameworks slash development time by 60%, getting your AI products live faster than the competition.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <span class="value-icon">🔒</span>
+          <h3 class="value-title">Enterprise Security</h3>
+          <p class="value-text">SOC2 compliant infrastructure. Your data, your models, your competitive edge — locked down and never shared.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-1">
+          <span class="value-icon">🌐</span>
+          <h3 class="value-title">Global Scale</h3>
+          <p class="value-text">Multi-region deployment ready. From startup to unicorn, our architecture grows with you without missing a beat.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-2">
+          <span class="value-icon">🤝</span>
+          <h3 class="value-title">White-Glove Support</h3>
+          <p class="value-text">Dedicated AI engineers embedded in your team. Not ticket queues — real people solving real problems in real time.</p>
+        </div>
+        <div class="value-card reveal reveal-delay-3">
+          <span class="value-icon">🧬</span>
+          <h3 class="value-title">Continuous Learning</h3>
+          <p class="value-text">Our models don't stagnate. Feedback loops, retraining pipelines, and live monitoring keep your AI ahead of the curve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div style="background: linear-gradient(135deg, rgba(123,47,255,0.15) 0%, rgba(0,212,255,0.1) 100%); border: 1px solid rgba(123,47,255,0.3); border-radius: 24px; padding: 56px 48px; text-align:center; position:relative; overflow:hidden;" class="reveal">
+        <div style="position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:radial-gradient(circle, rgba(123,47,255,0.2) 0%, transparent 70%);pointer-events:none;"></div>
+        <div style="position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%);pointer-events:none;"></div>
+        <span class="section-eyebrow" style="display:block;margin-bottom:16px;">Ready to Build?</span>
+        <h2 style="font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;color:var(--text-primary);margin-bottom:16px;line-height:1.2;">
+          Let's Turn Your Idea into<br /><span style="background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Production-Ready AI</span>
+        </h2>
+        <p style="color:var(--text-secondary);margin-bottom:36px;font-size:1.05rem;max-width:480px;margin-left:auto;margin-right:auto;">
+          Book a free 30-minute discovery call. No fluff, no pitch decks — just a real conversation about your AI goals.
+        </p>
+        <a href="contact.html" class="btn-primary" style="font-size:1.05rem;padding:18px 40px;">
+          Start the Conversation
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:0;">
+          <img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+          <span class="nav-logo-text">RootsAI</span>
+        </a>
+        <p>Building the next layer of human–machine collaboration through precision AI engineering, research, and product development.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">AI Solutions</a></li>
+          <li><a href="services.html">ML & Deep Learning</a></li>
+          <li><a href="services.html">AI Agents</a></li>
+          <li><a href="services.html">Automation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Twitter / X</a></li>
+          <li><a href="#">GitHub</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RootsAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#" title="LinkedIn">in</a>
+        <a class="social-btn" href="#" title="Twitter">𝕏</a>
+        <a class="social-btn" href="#" title="GitHub">⌥</a>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- end .page-wrapper -->
+
+<script src="js/script.js"></script>
+</body>
+</html>

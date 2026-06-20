@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — RootsAI</title>
+  <meta name="description" content="The story of RootsAI — who we are, what drives us, and why we believe AI should serve humanity." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="rootsai-logo.png" />
+  <style>
+    /* Timeline */
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--violet), var(--cyan), transparent);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      gap: 0;
+      margin-bottom: 48px;
+      align-items: start;
+    }
+
+    .timeline-content-left {
+      padding-right: 40px;
+      text-align: right;
+    }
+
+    .timeline-content-right {
+      padding-left: 40px;
+      text-align: left;
+    }
+
+    .timeline-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .timeline-dot {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: var(--gradient-hero);
+      border: 2px solid var(--bg-primary);
+      box-shadow: 0 0 12px rgba(123,47,255,0.5);
+    }
+
+    .timeline-year {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--violet-light);
+      margin-top: 8px;
+      white-space: nowrap;
+    }
+
+    .timeline-event-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .timeline-event-text {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Alternating layout */
+    .timeline-item:nth-child(even) .timeline-content-left { grid-column: 1; }
+    .timeline-item:nth-child(even) .timeline-content-right { grid-column: 3; }
+    .timeline-item:nth-child(odd) .timeline-content-left { opacity: 0; }
+    .timeline-item:nth-child(odd) .timeline-content-right { grid-column: 3; }
+    .timeline-item:nth-child(even) .timeline-content-right { opacity: 0; }
+
+    /* Manifesto section */
+    .manifesto {
+      background: linear-gradient(135deg, rgba(123,47,255,0.08) 0%, rgba(0,212,255,0.05) 100%);
+      border: 1px solid rgba(123,47,255,0.2);
+      border-radius: var(--radius-xl);
+      padding: 64px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .manifesto::before {
+      content: '❝';
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8rem;
+      color: rgba(123,47,255,0.06);
+      font-family: Georgia, serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .manifesto-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.5;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .manifesto-attr {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+
+    .pillar-card:hover {
+      border-color: var(--violet);
+      background: var(--bg-card-hover);
+      transform: translateX(4px);
+    }
+
+    .pillar-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 48px;
+    }
+
+    .pillar-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .pillar-text p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Vision / Mission split */
+    .vm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .vm-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .vm-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .vm-card.vision::before { background: var(--gradient-hero); }
+    .vm-card.mission::before { background: linear-gradient(135deg, var(--cyan), var(--violet)); }
+
+    .vm-card:hover {
+      border-color: rgba(123,47,255,0.3);
+      transform: translateY(-4px);
+    }
+
+    .vm-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cyan);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .vm-card.mission .vm-label { color: var(--violet-light); }
+
+    .vm-icon { font-size: 2.5rem; margin-bottom: 16px; display: block; }
+
+    .vm-title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .vm-text {
+      color: var(--text-secondary);
+      font-size: 0.93rem;
+      line-height: 1.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .timeline::before { left: 20px; }
+      .timeline-item { grid-template-columns: 40px 1fr; }
+      .timeline-content-left { display: none; }
+      .timeline-content-right { grid-column: 2; padding-left: 20px; text-align: left; opacity: 1 !important; }
+      .timeline-center { grid-column: 1; }
+      .timeline-item:nth-child(even) .timeline-content-right { opacity: 1 !important; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .vm-grid { grid-template-columns: 1fr; }
+      .manifesto { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+<div class="page-transition"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
+      <span class="nav-logo-text">RootsAI</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="subgroups.html">Sub Groups</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" id="mobile-close">✕</button>
+  <a href="index.html">Home</a>
+  <a href="services.html">Services</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="subgroups.html">Sub Groups</a>
+  <a href="contact.html">Contact Us</a>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- PAGE HERO WITH SPLIT LAYOUT -->
+  <section class="section" style="padding-top:140px;padding-bottom:60px;position:relative;overflow:hidden;">
+    <div class="hero-bg-orb orb1" style="opacity:0.4;"></div>
+    <div class="hero-bg-orb orb2" style="opacity:0.3;"></div>
+    <div class="container">
+      <div class="about-content-grid">
+
+        <!-- Left text -->
+        <div>
+          <span class="section-eyebrow" style="display:block;margin-bottom:16px;">Our Story</span>
+          <h1 style="font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;margin-bottom:24px;color:var(--text-primary);">
+            We Believe AI Should<br /><span style="background:var(--gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Amplify Humanity</span>
+          </h1>
+          <p style="color:var(--text-secondary);font-size:1.05rem;line-height:1.8;margin-bottom:20px;">
+            RootsAI was born in 2023 in a tiny Lahore apartment, by three engineers who were tired of watching AI remain the exclusive domain of tech giants.
+          </p>
+          <p style="color:var(--text-secondary);font-size:1.05rem;line-height:1.8;margin-bottom:32px;">
+            We believed — and still believe — that the most transformative applications of AI are yet to be built. Not by billion-dollar labs. But by focused teams, close to real problems, with the courage to ship.
+          </p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <a href="contact.html" class="btn-primary">Work With Us →</a>
+            <a href="services.html" class="btn-secondary">Our Services</a>
+          </div>
+        </div>
+
+        <!-- Right stats card -->
+        <div class="reveal">
+          <div class="about-visual-card">
+            <div class="about-stat-grid">
+              <div class="about-stat-card">
+                <span class="about-stat-num" data-count="2" data-suffix="">0</span>
+                <span class="about-stat-lbl">Years Building</span>
+              </div>
+              <div class="about-stat-card">
+                <span class="about-stat-num" data-count="150" data-suffix="+">0+</span>
+                <span class="about-stat-lbl">Projects Done</span>
+              </div>
+              <div class="about-stat-card">
+                <span class="about-stat-num" data-count="3" data-suffix="">0</span>
+                <span class="about-stat-lbl">Flagship Products</span>
+              </div>
+              <div class="about-stat-card">
+                <span class="about-stat-num" data-count="50" data-suffix="+">0+</span>
+                <span class="about-stat-lbl">Enterprise Clients</span>
+              </div>
+            </div>
+
+            <div style="margin-top:24px;padding:20px;background:rgba(123,47,255,0.06);border:1px solid rgba(123,47,255,0.15);border-radius:var(--radius-sm);">
+              <p style="font-size:0.85rem;color:var(--text-secondary);line-height:1.7;">
+                <strong style="color:var(--violet-light);">🌍 Global Reach.</strong> We serve clients from San Francisco to Singapore, with a core team split between Silicon Valley and Lahore's booming tech district.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- MANIFESTO -->
+  <section class="section">
+    <div class="container">
+      <div class="manifesto reveal">
+        <p class="manifesto-text">
+          "We don't build AI for the sake of AI. We build it because real businesses have real problems, and intelligence — applied correctly — is the most powerful lever for change that has ever existed."
+        </p>
+        <p class="manifesto-attr">— Abdullah Rizwan, CEO & Co-Founder, RootsAI</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION & MISSION -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Direction</span>
+        <h2 class="section-title">Our <span>Vision & Mission</span></h2>
+      </div>
+      <div class="vm-grid">
+        <div class="vm-card vision reveal reveal-delay-1">
+          <span class="vm-label">Vision</span>
+          <span class="vm-icon">🔭</span>
+          <h3 class="vm-title">A World Powered by Accessible AI</h3>
+          <p class="vm-text">We envision a future where every business — from a solo founder in Lahore to a Fortune 500 in New York — has access to AI capabilities that once required armies of PhDs and hundreds of millions in compute budgets.</p>
+        </div>
+        <div class="vm-card mission reveal reveal-delay-2">
+          <span class="vm-label">Mission</span>
+          <span class="vm-icon">🎯</span>
+          <h3 class="vm-title">Turning AI Potential into Deployable Reality</h3>
+          <p class="vm-text">We bridge the gap between state-of-the-art AI research and real-world production deployments. Our mission is to make cutting-edge AI practical, affordable, and measurably impactful for the businesses we serve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- OUR JOURNEY TIMELINE -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Our Journey</span>
+        <h2 class="section-title">From Garage to <span>Global</span></h2>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-content-left">
+            <h3 class="timeline-event-title">The Spark</h3>
+            <p class="timeline-event-text">Three engineers, one shared frustration, and a Google Doc that would become RootsAI. We quit our jobs to build the AI company we wished existed.</p>
+          </div>
+          <div class="timeline-center">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">Jan 2023</span>
+          </div>
+          <div class="timeline-content-right"></div>
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-content-left"></div>
+          <div class="timeline-center">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">Apr 2023</span>
+          </div>
+          <div class="timeline-content-right">
+            <h3 class="timeline-event-title">First Client</h3>
+            <p class="timeline-event-text">Signed our first enterprise contract — a $120K ML pipeline project for a fintech company. We delivered in 6 weeks. They extended 4 times.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-content-left">
+            <h3 class="timeline-event-title">SmartCareer Sight Launched</h3>
+            <p class="timeline-event-text">Shipped our first product in 90 days. 2,000 users in week one with zero marketing spend — just word of mouth from people who found it genuinely useful.</p>
+          </div>
+          <div class="timeline-center">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">Sep 2023</span>
+          </div>
+          <div class="timeline-content-right"></div>
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-3">
+          <div class="timeline-content-left"></div>
+          <div class="timeline-center">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">Mar 2024</span>
+          </div>
+          <div class="timeline-content-right">
+            <h3 class="timeline-event-title">Team of 10</h3>
+            <p class="timeline-event-text">Grew from 3 co-founders to a 10-person team of AI engineers, designers, and product managers across two continents.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal reveal-delay-4">
+          <div class="timeline-content-left">
+            <h3 class="timeline-event-title">RootsChat Beta</h3>
+            <p class="timeline-event-text">Launched our second product into private beta with 500 waitlisted users. Featured in 3 tech publications within the first week.</p>
+          </div>
+          <div class="timeline-center">
+            <div class="timeline-dot"></div>
+            <span class="timeline-year">Nov 2024</span>
+          </div>
+          <div class="timeline-content-right"></div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-content-left"></div>
+          <div class="timeline-center">
+            <div class="timeline-dot" style="background:linear-gradient(135deg,var(--cyan),var(--violet));box-shadow:0 0 16px var(--cyan-glow);"></div>
+            <span class="timeline-year">2025 →</span>
+          </div>
+          <div class="timeline-content-right">
+            <h3 class="timeline-event-title">What's Next</h3>
+            <p class="timeline-event-text">AI Tutor launching, Series A in progress, and a new enterprise product in stealth. The best chapters of RootsAI are still being written.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- TEAM PHILOSOPHY -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">Team Philosophy</span>
+        <h2 class="section-title">How We <span>Operate</span></h2>
+        <p class="section-subtitle">These aren't values on a poster — they're operating principles we actually live by.</p>
+      </div>
+
+      <div class="pillars-grid">
+
+        <div class="pillar-card reveal reveal-delay-1">
+          <span class="pillar-number">01</span>
+          <div class="pillar-text">
+            <h3>Ship Fast, Learn Faster</h3>
+            <p>We believe in getting working things in front of real users as quickly as possible. Imperfect and live beats perfect and delayed every single time.</p>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal reveal-delay-2">
+          <span class="pillar-number">02</span>
+          <div class="pillar-text">
+            <h3>Radical Transparency</h3>
+            <p>With clients. With each other. With our own limitations. We tell the truth even when it's uncomfortable — because trust is the only currency that compounds.</p>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal reveal-delay-3">
+          <span class="pillar-number">03</span>
+          <div class="pillar-text">
+            <h3>Depth Over Breadth</h3>
+            <p>We go deep on a focused set of AI capabilities. We'd rather be world-class at ten things than average at fifty. This focus is why our work actually works.</p>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal reveal-delay-4">
+          <span class="pillar-number">04</span>
+          <div class="pillar-text">
+            <h3>Ownership Mentality</h3>
+            <p>Everyone at RootsAI thinks like a founder. We take problems personally, celebrate wins collectively, and never hide behind process when a client needs results.</p>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal reveal-delay-1">
+          <span class="pillar-number">05</span>
+          <div class="pillar-text">
+            <h3>Ethics by Design</h3>
+            <p>We won't build AI that harms, deceives, or manipulates. Responsible AI isn't a PR talking point for us — it's a hard line we enforce in every project we take on.</p>
+          </div>
+        </div>
+
+        <div class="pillar-card reveal reveal-delay-2">
+          <span class="pillar-number">06</span>
+          <div class="pillar-text">
+            <h3>Continuous Curiosity</h3>
+            <p>The AI landscape moves at light speed. Every team member blocks dedicated time for research, learning, and experimentation — it's how we stay a step ahead.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div style="background:var(--gradient-card);border:1px solid var(--border-glow);border-radius:var(--radius-xl);padding:64px;text-align:center;position:relative;overflow:hidden;" class="reveal">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 0%, rgba(123,47,255,0.1) 0%, transparent 60%);pointer-events:none;"></div>
+        <span class="section-eyebrow" style="display:block;margin-bottom:16px;">Join the Mission</span>
+        <h2 style="font-family:var(--font-display);font-size:2.2rem;font-weight:700;color:var(--text-primary);margin-bottom:16px;line-height:1.2;">
+          We're Just Getting Started
+        </h2>
+        <p style="color:var(--text-secondary);font-size:1.05rem;margin-bottom:36px;max-width:460px;margin-left:auto;margin-right:auto;">
+          Whether you want to work with us, partner with us, or just follow along — we'd love to have you in the Nexus community.
+        </p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="contact.html" class="btn-primary">Work With Us →</a>
+          <a href="services.html" class="btn-secondary">See Our Services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" /><span class="nav-logo-text">RootsAI</span></a>
+        <p>Building the next layer of human–machine collaboration through precision AI engineering and product development.</p>
+      </div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="products.html">Products</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">AI Solutions</a></li><li><a href="services.html">ML & Deep Learning</a></li><li><a href="services.html">AI Agents</a></li><li><a href="services.html">Automation</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">GitHub</a></li><li><a href="#">Blog</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 RootsAI. All rights reserved.</p>
+      <div class="footer-socials">
+        <a class="social-btn" href="#">in</a>
+        <a class="social-btn" href="#">𝕏</a>
+        <a class="social-btn" href="#">⌥</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="js/script.js"></script>
+</body>
+</html>
