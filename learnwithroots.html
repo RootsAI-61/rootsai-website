@@ -26,6 +26,7 @@
       text-align: center;
       padding: 130px 24px 60px;
       position: relative;
+      overflow: hidden;
     }
     .lwr-hero h1 {
       font-family: var(--font-display);
@@ -123,9 +124,10 @@
       border: 1px solid var(--card-border);
       border-radius: 20px;
       overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, opacity 0.3s;
       display: flex;
       flex-direction: column;
+      position: relative;
     }
     .course-card:hover {
       transform: translateY(-6px);
@@ -217,10 +219,63 @@
       margin-top: 1px;
     }
     .price-tag-monthly {
-      font-size: 0.8rem;
-      color: var(--lwr-green);
-      font-weight: 600;
-      margin-top: 2px;
+      display: none;
+    }
+
+    /* Admission status badges */
+    .admission-badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .admission-badge .dot-pulse {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .admission-badge.open {
+      background: rgba(0, 230, 150, 0.16);
+      border: 1px solid rgba(0, 230, 150, 0.5);
+      color: #00ffb0;
+      box-shadow: 0 0 14px rgba(0, 230, 150, 0.35);
+    }
+    .admission-badge.open .dot-pulse {
+      background: #00ffb0;
+      box-shadow: 0 0 8px #00ffb0;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .admission-badge.closed {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.55);
+    }
+    .admission-badge.closed .dot-pulse {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .course-card.is-closed {
+      opacity: 0.55;
+      filter: grayscale(0.5);
+    }
+    .course-card.is-closed:hover {
+      opacity: 0.75;
+      transform: none;
+      box-shadow: none;
+      border-color: var(--card-border);
+    }
+    .course-card.is-open {
+      border-color: rgba(0, 230, 150, 0.35);
+      box-shadow: 0 0 0 1px rgba(0, 230, 150, 0.12), 0 16px 40px rgba(0, 200, 150, 0.12);
     }
 
     /* Banner color themes */
@@ -328,7 +383,7 @@
       <li><a href="index.html">RootsAI Home</a></li>
       <li><a href="subgroups.html">Sub Groups</a></li>
       <li><a href="learnwithroots.html" class="active">Courses</a></li>
-      <li><a href="contact.html" class="nav-cta">Enroll Now</a></li>
+      <li><a href="https://wa.me/923140712495" class="nav-cta" target="_blank" rel="noopener">Enroll Now</a></li>
     </ul>
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
@@ -342,7 +397,7 @@
   <a href="index.html">RootsAI Home</a>
   <a href="subgroups.html">Sub Groups</a>
   <a href="learnwithroots.html">Courses</a>
-  <a href="contact.html">Enroll Now</a>
+  <a href="https://wa.me/923140712495" target="_blank" rel="noopener">Enroll Now</a>
 </div>
 
 <div class="page-wrapper">
@@ -399,7 +454,8 @@
     <div class="courses-grid">
 
       <!-- AI Course -->
-      <div class="course-card reveal">
+      <div class="course-card is-open reveal">
+        <span class="admission-badge open"><span class="dot-pulse"></span>Admission Open</span>
         <div class="course-banner banner-ai">🤖</div>
         <div class="course-body">
           <span class="course-cat cat-ai">Artificial Intelligence</span>
@@ -420,14 +476,14 @@
             <div class="course-pricing">
               <div class="price-full">₨20,000</div>
               <div class="price-note">Full Course</div>
-              <div class="price-tag-monthly">≈ ₨7,000/month</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Web Dev Course -->
-      <div class="course-card reveal reveal-delay-1">
+      <div class="course-card is-open reveal reveal-delay-1">
+        <span class="admission-badge open"><span class="dot-pulse"></span>Admission Open</span>
         <div class="course-banner banner-web">💻</div>
         <div class="course-body">
           <span class="course-cat cat-web">Web Development</span>
@@ -449,14 +505,14 @@
             <div class="course-pricing">
               <div class="price-full">₨20,000</div>
               <div class="price-note">Full Course</div>
-              <div class="price-tag-monthly">≈ ₨7,000/month</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- UI/UX Course -->
-      <div class="course-card reveal reveal-delay-2">
+      <div class="course-card is-closed reveal reveal-delay-2">
+        <span class="admission-badge closed"><span class="dot-pulse"></span>Admission Closed</span>
         <div class="course-banner banner-uiux">🎨</div>
         <div class="course-body">
           <span class="course-cat cat-uiux">UI/UX Design</span>
@@ -477,14 +533,14 @@
             <div class="course-pricing">
               <div class="price-full">₨20,000</div>
               <div class="price-note">Full Course</div>
-              <div class="price-tag-monthly">≈ ₨7,000/month</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Data Science -->
-      <div class="course-card reveal">
+      <div class="course-card is-closed reveal">
+        <span class="admission-badge closed"><span class="dot-pulse"></span>Admission Closed</span>
         <div class="course-banner banner-data">📊</div>
         <div class="course-body">
           <span class="course-cat cat-data">Data Science</span>
@@ -505,14 +561,14 @@
             <div class="course-pricing">
               <div class="price-full">₨20,000</div>
               <div class="price-note">Full Course</div>
-              <div class="price-tag-monthly">≈ ₨7,000/month</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Machine Learning -->
-      <div class="course-card reveal reveal-delay-1">
+      <div class="course-card is-closed reveal reveal-delay-1">
+        <span class="admission-badge closed"><span class="dot-pulse"></span>Admission Closed</span>
         <div class="course-banner banner-ml">🧠</div>
         <div class="course-body">
           <span class="course-cat cat-ml">Machine Learning</span>
@@ -533,14 +589,14 @@
             <div class="course-pricing">
               <div class="price-full">₨20,000</div>
               <div class="price-note">Full Course</div>
-              <div class="price-tag-monthly">≈ ₨7,000/month</div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Cybersecurity -->
-      <div class="course-card reveal reveal-delay-2">
+      <div class="course-card is-closed reveal reveal-delay-2">
+        <span class="admission-badge closed"><span class="dot-pulse"></span>Admission Closed</span>
         <div class="course-banner banner-cyber">🔐</div>
         <div class="course-body">
           <span class="course-cat cat-cyber">Cybersecurity</span>
@@ -561,7 +617,6 @@
             <div class="course-pricing">
               <div class="price-full">₨20,000</div>
               <div class="price-note">Full Course</div>
-              <div class="price-tag-monthly">≈ ₨7,000/month</div>
             </div>
           </div>
         </div>
@@ -576,8 +631,8 @@
       <div style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(0,200,150,0.15),transparent 70%);pointer-events:none;"></div>
       <span class="section-eyebrow" style="display:block;margin-bottom:14px;">Ready to Start?</span>
       <h2>Enroll Today &amp; Start<br/>Building Your Future</h2>
-      <p>All courses are 3 months long with live sessions, recorded videos, projects, mentorship, and a certificate. Full fee: <strong style="color:var(--text-primary);">₨20,000</strong> — also payable monthly at ~₨7,000/month.</p>
-      <a href="contact.html" class="btn-lwr">
+      <p>All courses are 3 months long with live sessions, recorded videos, projects, mentorship, and a certificate. Full fee: <strong style="color:var(--text-primary);">₨20,000</strong>.</p>
+      <a href="https://wa.me/923140712495" target="_blank" rel="noopener" class="btn-lwr">
         Apply Now
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>

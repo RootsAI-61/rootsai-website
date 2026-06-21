@@ -245,45 +245,57 @@
 
     /* Responsive */
     @media (max-width: 768px) {
-      .timeline { padding-left: 36px; }
-      .timeline::before { left: 0; }
+      .timeline { padding-left: 28px; max-width: 100%; }
+      .timeline::before { left: 6px; transform: none; }
       .timeline-item {
         display: block;
-        margin-bottom: 36px;
+        margin-bottom: 32px;
         position: relative;
-        padding-left: 28px;
       }
       .timeline-content-left { display: none; }
       .timeline-content-right {
         display: block !important;
         opacity: 1 !important;
+        grid-column: unset;
         padding-left: 0;
         text-align: left;
       }
       .timeline-center {
-        position: absolute;
-        left: -36px;
-        top: 0;
+        position: static;
         flex-direction: row;
-        gap: 10px;
+        gap: 8px;
         align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 8px;
       }
-      .timeline-year { margin-top: 0; }
+      .timeline-dot {
+        position: absolute;
+        left: -28px;
+        top: 4px;
+        flex-shrink: 0;
+      }
+      .timeline-year {
+        margin-top: 0;
+        margin-left: 4px;
+      }
       .pillars-grid { grid-template-columns: 1fr; }
       .vm-grid { grid-template-columns: 1fr; }
       .manifesto { padding: 40px 24px; }
       .manifesto::before { font-size: 5.5rem; }
+      .about-visual-card { padding: 28px; }
     }
 
     @media (max-width: 480px) {
-      .timeline { padding-left: 30px; }
-      .timeline-center { left: -30px; }
-      .timeline-year { font-size: 0.62rem; }
+      .timeline { padding-left: 24px; }
+      .timeline::before { left: 5px; }
+      .timeline-dot { left: -24px; }
+      .timeline-year { font-size: 0.68rem; }
       .manifesto { padding: 32px 18px; }
       .manifesto-text { font-size: 1.1rem; }
       .pillar-card { padding: 24px 20px; gap: 14px; }
       .pillar-number { font-size: 2rem; width: 36px; }
       .vm-card { padding: 28px 22px; }
+      .about-visual-card { padding: 22px; }
     }
   </style>
 </head>
@@ -390,7 +402,7 @@
         <p class="manifesto-text">
           "We don't build AI for the sake of AI. We build it because real businesses have real problems, and intelligence — applied correctly — is the most powerful lever for change that has ever existed."
         </p>
-        <p class="manifesto-attr">— Abdullah Rizwan, CEO & Co-Founder, RootsAI</p>
+        <p class="manifesto-attr">— Abdullah, CEO & Founder, RootsAI</p>
       </div>
     </div>
   </section>
@@ -601,14 +613,14 @@
       </div>
       <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="products.html">Products</a></li><li><a href="contact.html">Contact</a></li></ul></div>
       <div class="footer-col"><h4>Services</h4><ul><li><a href="services.html">AI Solutions</a></li><li><a href="services.html">ML & Deep Learning</a></li><li><a href="services.html">AI Agents</a></li><li><a href="services.html">Automation</a></li></ul></div>
-      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">GitHub</a></li><li><a href="#">Blog</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="https://www.linkedin.com/company/1rootsai">LinkedIn</a></li><li><a href="https://twitter.com/RootsAI">Twitter / X</a></li><li><a href="https://github.com/RootsAI-61">GitHub</a></li><li><a href="#">Blog</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <p>© 2025 RootsAI. All rights reserved.</p>
       <div class="footer-socials">
-        <a class="social-btn" href="#">in</a>
-        <a class="social-btn" href="#">𝕏</a>
-        <a class="social-btn" href="#">⌥</a>
+        <a class="social-btn" href="https://www.linkedin.com/company/1rootsai" title="LinkedIn">in</a>
+        <a class="social-btn" href="https://twitter.com/RootsAI" title="Twitter / X">𝕏</a>
+        <a class="social-btn" href="https://github.com/RootsAI-61" title="GitHub">⌥</a>
       </div>
     </div>
   </footer>

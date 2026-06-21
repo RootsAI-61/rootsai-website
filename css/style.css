@@ -57,6 +57,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
@@ -1242,6 +1243,10 @@ body {
   align-items: center;
 }
 
+.about-content-grid > * {
+  min-width: 0;
+}
+
 .about-text-col {}
 
 .about-visual-col {
@@ -1469,6 +1474,27 @@ body {
   resize: vertical;
   min-height: 140px;
   line-height: 1.6;
+}
+
+.form-input.field-error,
+.form-textarea.field-error {
+  border-color: #ff4d6d;
+  background: rgba(255,77,109,0.05);
+  box-shadow: 0 0 0 3px rgba(255,77,109,0.12);
+}
+
+.form-error-msg {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  color: #ff6b85;
+  font-size: 0.78rem;
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.form-error-msg.show {
+  display: flex;
 }
 
 .form-row {
@@ -1704,7 +1730,15 @@ body {
   opacity: 1;
 }
 
+.toast.toast-error {
+  background: rgba(46,10,18,0.97);
+  border: 1px solid rgba(255,77,109,0.4);
+  box-shadow: 0 8px 24px rgba(255,77,109,0.15);
+}
+
 .toast-icon { font-size: 18px; }
+
+.toast-error .toast-icon { color: #ff4d6d; }
 
 /* ---------- GLOW LINE DECORATORS ---------- */
 .glow-line {
@@ -1739,6 +1773,14 @@ body {
   .contact-grid { grid-template-columns: 1fr; }
   .values-grid { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+
+  /* Mobile/tablet footer: show only page links + social icons */
+  .footer-brand { display: none; }
+  .footer-col:nth-of-type(3) { display: none; }
+  .footer-col:nth-of-type(4) { display: none; }
+  .footer-bottom p { display: none; }
+  .footer-bottom { justify-content: center; padding-top: 24px; }
+  .footer-socials { justify-content: center; }
   .form-row { grid-template-columns: 1fr; }
   .onboarding-card { padding: 36px 24px; }
 }

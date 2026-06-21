@@ -6,7 +6,7 @@
   <title>Contact Us — RootsAI</title>
   <meta name="description" content="Get in touch with RootsAI. Let's build something extraordinary together." />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="icon" href="rootsai-logo.png" />
   <style>
     /* Floating background rings */
     .contact-bg-ring {
@@ -201,7 +201,7 @@
 <nav class="navbar">
   <div class="nav-container">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-icon">⚡</div>
+      <img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" />
       <span class="nav-logo-text">RootsAI</span>
     </a>
     <ul class="nav-links">
@@ -209,6 +209,7 @@
       <li><a href="services.html">Services</a></li>
       <li><a href="products.html">Products</a></li>
       <li><a href="about.html">About</a></li>
+      <li><a href="subgroups.html">Sub Groups</a></li>
       <li><a href="contact.html" class="active nav-cta">Contact Us</a></li>
     </ul>
     <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -260,14 +261,14 @@
               <div class="contact-method-icon">📧</div>
               <div class="contact-method-text">
                 <strong>Email Us</strong>
-                <span>Rootsai61@gmail.com</span>
+                <span>rootsai61@gmail.com</span>
               </div>
             </div>
             <div class="contact-method reveal reveal-delay-2">
               <div class="contact-method-icon">📞</div>
               <div class="contact-method-text">
                 <strong>Call Us</strong>
-                <span>+92-314-0712495</span>
+                <span>+92 314 0712495</span>
               </div>
             </div>
             <div class="contact-method reveal reveal-delay-3">
@@ -292,8 +293,7 @@
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn
             </a>
-            <a href="#" class="social-link-btn">𝕏 Twitter</a>
-            <a href="#" class="social-link-btn">⌥ GitHub</a>
+            <a href="https://github.com/RootsAI-61" class="social-link-btn">⌥ GitHub</a>
           </div>
 
           <!-- Map placeholder -->
@@ -318,27 +318,29 @@
             <h3 style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--text-primary);margin-bottom:8px;">Send a Message</h3>
             <p style="color:var(--text-secondary);font-size:0.88rem;margin-bottom:28px;">Fill in the form and we'll reach out to schedule a call.</p>
 
-            <form id="contact-form" novalidate>
+            <form id="contact-form" action="https://formspree.io/f/xeebjppj" method="POST" novalidate>
 
               <div class="form-row">
                 <div class="form-group">
                   <label class="form-label" for="name">Full Name</label>
-                  <input type="text" id="name" class="form-input" placeholder="Abdullah" autocomplete="name" />
+                  <input type="text" id="name" name="name" class="form-input" placeholder="Abdullah" autocomplete="name" required />
+                  <span class="form-error-msg" id="name-error"><span>⚠</span><span>Please enter your name</span></span>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="email">Email Address</label>
-                  <input type="email" id="email" class="form-input" placeholder="Rootsai61@gmail.com" autocomplete="email" />
+                  <input type="email" id="email" name="email" class="form-input" placeholder="abdullah@company.com" autocomplete="email" required />
+                  <span class="form-error-msg" id="email-error"><span>⚠</span><span>Please enter a valid email</span></span>
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="form-label" for="company">Company / Project</label>
-                <input type="text" id="company" class="form-input" placeholder="Your startup or company name" />
+                <input type="text" id="company" name="company" class="form-input" placeholder="Your startup or company name" />
               </div>
 
               <div class="form-group">
                 <label class="form-label" for="service">Service Interested In</label>
-                <select id="service" class="form-input" style="cursor:pointer;appearance:auto;">
+                <select id="service" name="service" class="form-input" style="cursor:pointer;appearance:auto;">
                   <option value="" disabled selected>Select a service...</option>
                   <option>AI Solutions</option>
                   <option>Machine Learning</option>
@@ -358,8 +360,11 @@
 
               <div class="form-group">
                 <label class="form-label" for="message">Tell Us About Your Project</label>
-                <textarea id="message" class="form-textarea" placeholder="Describe your project, goals, timeline, and budget range..."></textarea>
+                <textarea id="message" name="message" class="form-textarea" placeholder="Describe your project, goals, timeline, and budget range..." required></textarea>
+                <span class="form-error-msg" id="message-error"><span>⚠</span><span>Please tell us a bit about your project</span></span>
               </div>
+
+              <input type="hidden" name="_subject" value="New inquiry from RootsAI website" />
 
               <button type="submit" class="submit-btn">
                 <div class="spinner"></div>
@@ -444,7 +449,7 @@
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="index.html" class="nav-logo"><div class="nav-logo-icon">⚡</div><span class="nav-logo-text">RootsAI</span></a>
+        <a href="index.html" class="nav-logo"><img src="rootsai-logo.png" alt="RootsAI" class="nav-logo-icon" style="background:transparent;object-fit:contain;" /><span class="nav-logo-text">RootsAI</span></a>
         <p>Building the next layer of human–machine collaboration through precision AI engineering and product development.</p>
       </div>
       <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="products.html">Products</a></li><li><a href="contact.html">Contact</a></li></ul></div>
@@ -474,25 +479,82 @@
     if (!isOpen) item.classList.add('open');
   }
 
-  /* Override contact form for success overlay */
+  /* Override contact form for success overlay + real submission via Formspree */
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('contact-form');
     if (!form) return;
+
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+    const messageField = document.getElementById('message');
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function setFieldError(field, errorEl, hasError) {
+      field.classList.toggle('field-error', hasError);
+      if (errorEl) errorEl.classList.toggle('show', hasError);
+    }
+
+    function clearFieldError(field, errorEl) {
+      setFieldError(field, errorEl, false);
+    }
+
+    // Clear error state as soon as the user starts fixing a field
+    [nameField, emailField, messageField].forEach((field) => {
+      field.addEventListener('input', () => {
+        const errorEl = document.getElementById(`${field.id}-error`);
+        if (field.value.trim()) clearFieldError(field, errorEl);
+      });
+    });
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      if (!name || !email || !message) {
-        showToast('⚠️ Please fill in name, email, and message');
+
+      const name = nameField.value.trim();
+      const email = emailField.value.trim();
+      const message = messageField.value.trim();
+
+      const nameError = document.getElementById('name-error');
+      const emailError = document.getElementById('email-error');
+      const messageError = document.getElementById('message-error');
+
+      const nameInvalid = !name;
+      const emailInvalid = !email || !emailPattern.test(email);
+      const messageInvalid = !message;
+
+      setFieldError(nameField, nameError, nameInvalid);
+      setFieldError(emailField, emailError, emailInvalid);
+      setFieldError(messageField, messageError, messageInvalid);
+
+      if (nameInvalid || emailInvalid || messageInvalid) {
+        const missing = [];
+        if (nameInvalid) missing.push('name');
+        if (emailInvalid) missing.push('a valid email');
+        if (messageInvalid) missing.push('a project message');
+        showToast(`Please fill in ${missing.join(', ')} before sending.`, 'error');
         return;
       }
+
       const btn = form.querySelector('.submit-btn');
       btn.classList.add('loading');
-      setTimeout(() => {
-        btn.classList.remove('loading');
-        document.getElementById('form-success').classList.add('show');
-      }, 1600);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+        .then((response) => {
+          btn.classList.remove('loading');
+          if (response.ok) {
+            document.getElementById('form-success').classList.add('show');
+          } else {
+            showToast('Something went wrong. Please try again or email us directly.', 'error');
+          }
+        })
+        .catch(() => {
+          btn.classList.remove('loading');
+          showToast('Something went wrong. Please try again or email us directly.', 'error');
+        });
     });
   });
 
@@ -504,12 +566,14 @@
     btn.querySelector('.btn-text').textContent = 'Send Message →';
   }
 
-  function showToast(msg) {
+  function showToast(msg, type) {
     let t = document.querySelector('.toast');
-    if (!t) { t = document.createElement('div'); t.className='toast'; document.body.appendChild(t); }
-    t.innerHTML = `<span>⚠️</span><span>${msg}</span>`;
+    if (!t) { t = document.createElement('div'); t.className = 'toast'; document.body.appendChild(t); }
+    t.className = 'toast' + (type === 'error' ? ' toast-error' : '');
+    const icon = type === 'error' ? '⛔' : 'ℹ️';
+    t.innerHTML = `<span class="toast-icon">${icon}</span><span>${msg}</span>`;
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
+    setTimeout(() => t.classList.remove('show'), 4000);
   }
 </script>
 </body>
